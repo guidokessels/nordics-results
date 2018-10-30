@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <title>X-Wing Nordics 2018 Results</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <script>
         function sortTable(n) {
             var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -225,13 +225,11 @@
             text-align: right;
         }
 
-        /** Added */
-
+        /** Remove redacted columns */
         #ranking-table tr>th:nth-child(2),
         #ranking-table tr>td:nth-child(2),
         #ranking-table tr>th:nth-child(12),
         #ranking-table tr>td:nth-child(12) {
-            /* background: red; */
             display: none;
         }
 
@@ -249,7 +247,7 @@
             border-bottom: 1px dashed #4E5066;
         }
 
-        h3:first-of-type {
+        h3.first-title {
             margin-top: 30px;
         }
     </style>
@@ -265,7 +263,7 @@
         You can watch the games on the <a href="https://www.youtube.com/playlist?list=PLLRXt0iH_YSZf4-kB9riGsEu_rv-AfUVO"
             target="_blank">Stockholm Wampas</a> YouTube channel
     </p>
-    <h3>Faction Distribution</h3>
+    <h3 class="first-title">Faction Distribution</h3>
     <table>
         <tr>
             <th>Faction</th>
