@@ -7,8 +7,9 @@
     <title>X-Wing Nordics 2018 Results</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <script>
-        function sortTable(n) {
+        function sortTable(n, sortNumerically) {
             var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            var numeric = !!sortNumerically;
             table = document.getElementById("ranking-table");
             switching = true;
             // Set the sorting direction to ascending:
@@ -30,17 +31,33 @@
                     y = rows[i + 1].getElementsByTagName("TD")[n];
                     /* Check if the two rows should switch place,
                     based on the direction, asc or desc: */
-                    if (dir == "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            // If so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
+                    if (sortNumerically) {
+                        if (dir === "asc") {
+                            if (Number(x.innerHTML) > Number(y.innerHTML)) {
+                                // If so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir === "desc") {
+                            if (Number(x.innerHTML) < Number(y.innerHTML)) {
+                                // If so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
                         }
-                    } else if (dir == "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            // If so, mark as a switch and break the loop:
-                            shouldSwitch = true;
-                            break;
+                    } else {
+                        if (dir === "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                // If so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
+                        } else if (dir === "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                // If so, mark as a switch and break the loop:
+                                shouldSwitch = true;
+                                break;
+                            }
                         }
                     }
                 }
@@ -523,18 +540,18 @@
     <span>Click column headers to sort</span>
     <table id="ranking-table" cellspacing=0 border=1>
         <tr>
-            <th onclick="sortTable(0)">Swiss Rank</th>
-            <th onclick="sortTable(1)">Player Name</th>
-            <th onclick="sortTable(2)">Faction</th>
-            <th onclick="sortTable(3)">Archetype</th>
-            <th onclick="sortTable(4)">Squad</th>
-            <th onclick="sortTable(5)">Squad Points</th>
-            <th onclick="sortTable(6)">Final Rank</th>
-            <th onclick="sortTable(7)">Points</th>
-            <th onclick="sortTable(8)">MOV</th>
-            <th onclick="sortTable(9)">SOS</th>
-            <th onclick="sortTable(10)">Dropped</th>
-            <th onclick="sortTable(11)">List</th>
+            <th onclick="sortTable(0, true)">Swiss Rank</th>
+            <th onclick="sortTable(1, false)">Player Name</th>
+            <th onclick="sortTable(2, false)">Faction</th>
+            <th onclick="sortTable(3, false)">Archetype</th>
+            <th onclick="sortTable(4, false)">Squad</th>
+            <th onclick="sortTable(5, true)">Squad Points</th>
+            <th onclick="sortTable(6, true)">Final Rank</th>
+            <th onclick="sortTable(7, true)">Points</th>
+            <th onclick="sortTable(8, true)">MOV</th>
+            <th onclick="sortTable(9, true)">SOS</th>
+            <th onclick="sortTable(10, false)">Dropped</th>
+            <th onclick="sortTable(11, false)">List</th>
         </tr>
         <tr>
             <td>1</td>
